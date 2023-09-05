@@ -2,6 +2,9 @@ const express = require('express')
 const path = require('path')
 const mongoose = require('mongoose')
 
+const session = require('express-session');   
+const FileStore = require('session-file-store')(session);   
+
 const app = express()
 const apiRouter = require('./routes/routing')
 
@@ -20,7 +23,16 @@ let port = 8000
 
 app.use(express.urlencoded({extended:false}))
 app.use(express.json())
+app.use(session({  
+     secret:"asdfasffdas",
+     resave:false,
+     saveUninitialized:true ,
+     store : new FileStore()
+   }))
+
 app.use('/',apiRouter)
+
+
 
 
 app.listen(port,()=>{
