@@ -1,7 +1,15 @@
 const express = require('express')
 const path = require('path')
+const mongoose = require('mongoose')
+
 const app = express()
-const apiRouter = require('./routes/routing.js')
+const apiRouter = require('./routes/routing')
+
+// Connect to MongoDB
+mongoose.connect("mongodb+srv://root:1234@kingdoo.9fyjfi0.mongodb.net/?retryWrites=true&w=majority",process.env.MONGO_URI, { useNewUrlParser: true})
+  .then(() => console.log('Successfully connected to mongodb'))
+  .catch(e => console.error(e));
+
 
 app.set('views',path.resolve(__dirname+'/views') )
 app.set('view engine','ejs')
