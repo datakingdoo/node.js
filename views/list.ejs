@@ -10,7 +10,7 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-5">
-					<h2 class="heading-section">Website menu #04</h2>
+					<h2 class="heading-section">Data Analyst Kingdoo Page</h2>
 				</div>
 			</div>
 		</div>
@@ -31,15 +31,17 @@
 
      <!-- DataTales Example -->
      <div class="card shadow mb-4">
-         <div class="card-header py-3">
-             <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-             <a href="/create"><button type="button" class="btn btn-primary float-right" >Write</button></a> 
-         </div>
-         <div class="card-header py-3">
-         </div>
+         <div class="card-header py-3-flex">
+                <div style="float: left;">
+                    <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                </div>
+                <div style="float: right;">
+                    <a href="/create"><button type="button" float  = right class="btn float-right btn-primary">Posting</button></a>  
+                </div>
+            </div>
          <div class="card-body">
              <div class="table-responsive">
-                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                 <table class="table table-bordered " id="dataTable" width="100%" cellspacing="0">
                      <thead>
                          <tr>
                              <th>ID</th>
@@ -61,14 +63,17 @@
                          </tr>
                      </tfoot>
                      <tbody>
-                         <tr>
-                             <td>Tiger Nixon</td>
-                             <td>System Architect</td>
-                             <td>Edinburgh</td>
-                             <td>61</td>
-                             <td>2011/04/25</td>
-                             <td>$320,800</td>
-                         </tr>
+                         <% for(var i = 0; i < articles.length ; i++){ %>
+                              <tr>
+                                   <td><%= i+1 %></td>
+                                   <td><%= articles[i].title %></td>
+                                   <td><%= articles[i].author %></td>
+                                   <td><%= articles[i].desc %></td>
+                                   <td><%= articles[i].updatedAt %></td>
+                                   <td>편집버튼 , 삭제버튼</td>
+                               </tr>
+                             <% } %>
+
                      </tbody>
                  </table>
              </div>

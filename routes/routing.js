@@ -1,5 +1,6 @@
 const express = require('express')
 const User = require('../utils/userModel.js') // .. -> 상위 폴더로
+const List = require('../utils/listModel.js')
 const router = express.Router()
 const bcrypt = require('bcrypt')
 
@@ -120,12 +121,35 @@ router.get('/logout',function(req, res){
      res.redirect('/');
      });
 
-router.get('/list',(req, res, next)=>{
-     res.render('list')
+router.get('/list',async(req, res, next)=>{
+     let result = await List.find()
+     console.log(result)
+     res.render('list',{articles:result})
 })
 
 router.get('/create',(req, res, next)=>{
      res.render('create')
+})
+
+router.post('/create',async(req, res, next)=>{
+     title = req.body.title
+     author = req.body.author
+     desc = req.body.desc
+     console.log(title)
+     const list = new List({
+          title:title,
+          author : author,
+          desc: desc
+    })
+
+    try {
+          let result = await list.save()
+          await console.log(`Saved successfully result : ${result}`)
+          await res.redirect('/list')
+     } catch (error) {
+          console.log(error);
+          return res.redirect('/create')
+     }
 })
 
 module.exports = router
