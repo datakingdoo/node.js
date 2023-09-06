@@ -57,7 +57,7 @@ router.post('/register', async(req, res)=>{
          try {
                let result = await user.save()
                await console.log(`Saved successfully result : ${result}`)
-               await res.redirect('/')
+               await res.redirect('/login')
           } catch (error) {
                console.log(error);
                return res.redirect('/register')

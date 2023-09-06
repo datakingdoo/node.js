@@ -21,6 +21,7 @@ let port = 8000
 //      console.log(`Server is running at http://localhost:${port}`)
 // })
 
+
 app.use(express.urlencoded({extended:false}))
 app.use(express.json())
 app.use(session({  
@@ -30,10 +31,8 @@ app.use(session({
      store : new FileStore()
    }))
 
+app.use(express.static('public'))
 app.use('/',apiRouter)
-
-
-
 
 app.listen(port,()=>{
      console.log(`Server is running at http://localhost:${port}`)
