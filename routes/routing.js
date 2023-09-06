@@ -119,4 +119,13 @@ router.get('/logout',function(req, res){
      req.session.destroy(function(){});
      res.redirect('/');
      });
+
+router.get('/list',(req, res, next)=>{
+     res.render('list')
+})
+
+router.get('/create',(req, res, next)=>{
+     res.render('create')
+})
+
 module.exports = router
